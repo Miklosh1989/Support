@@ -54,5 +54,5 @@ class TicketUpdateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Ticket
-        fields = ('is_done', )
+        fields = ('answer', 'is_done')
 
