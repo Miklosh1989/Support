@@ -22,7 +22,6 @@ class TicketDetailSerializer(serializers.ModelSerializer):
 
 class AnswerListSerializer(serializers.ModelSerializer):
 
-
     class Meta:
         model = Answer
         fields = "__all__"

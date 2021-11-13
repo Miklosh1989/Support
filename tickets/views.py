@@ -10,7 +10,8 @@ class TicketListView(generics.ListAPIView):
 
     queryset = Ticket.objects.filter(is_done = False)
     serializer_class = TicketListSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
 
 class TicketDetailView(APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
@@ -29,6 +30,7 @@ class AnswerListView(generics.ListAPIView):
 
 class AnswerDetailView(APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
     def get(self, request, pk):
         answer = Answer.objects.get(id=pk)
         serializer = AnswerDetailSerializer(answer)
