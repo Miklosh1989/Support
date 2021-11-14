@@ -3,9 +3,16 @@ from rest_framework.views import APIView
 from .serializers import *
 
 
-# Показывает активные тикеты
+# Показывает тикеты без ответа
 class TicketListView(generics.ListAPIView):
-    queryset = Ticket.objects.filter(is_done = False)
+    queryset = Ticket.objects.filter(is_done=False)
+    serializer_class = TicketListSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+
+# Показывает  тикеты с ответами
+class DoneTicketListView(generics.ListAPIView):
+    queryset = Ticket.objects.filter(is_done=True)
     serializer_class = TicketListSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
