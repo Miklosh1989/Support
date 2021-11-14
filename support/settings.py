@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ckeditor',
     'ckeditor_uploader',
+    'drf_yasg',
+    'corsheaders',
     'rest_framework_simplejwt',
     'rest_framework',
     'tickets',
@@ -56,6 +58,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -87,13 +90,23 @@ WSGI_APPLICATION = 'support.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'supportBase',
+#         'USER': 'postgres',
+#         'PASSWORD': 'Komarov1989',
+#         'HOST': 'localhost',
+#         'PORT': '5432'
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'supportBase',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': 'Komarov1989',
-        'HOST': 'localhost',
+        'HOST': 'rest_db',
         'PORT': '5432'
     }
 }
@@ -252,3 +265,8 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
+
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:8011",
+    "http://127.0.0.1:8011"
+]
